@@ -2,24 +2,33 @@
 
 This action checks out a private or public submodule hosted within GitHub.
 
-## Inputs
+## Usage
 
-### `ssh-key`
+````
+- uses: actions/checkout@v3
+- uses: kilianweisl/submodule-checkout@1.0.0
+````
 
-An optional SSH key used when checking out private submodules.
+## Private Repositories
 
-## Example usage
+If you want to check out private repositories, provide an additional (private) SSH-Key:
+````
+- uses: actions/checkout@v3
+- uses: kilianweisl/submodule-checkout@1.0.0
+  with:
+    ssh-key: '${{ secrets.SSH_PRIVATE_KEY }}'
+````
 
-#### Public Submodules:
+Make sure, that `SSH_PRIVATE_KEY` is added as secret variable in the parent repository and the corresponding public key as "deploy key" in the submodule repository (Settings->Deploy keys).
 
-```
-uses: jwsi/submodule-checkout@v1
-```
+## ChangeLog
 
-#### Private Submodules:
+The original code has been updated in order to make it work:
+- New GitHub RSA signature
+- `git config --global --add safe.directory /github/workspace` in `entrypoint.sh` (before `git submodule update --init --recursive` is executed).
 
-```
-uses: jwsi/submodule-checkout@v1
-with:
-  ssh-key: '${{ secrets.DEPLOY_KEY }}'
-```
+## License
+MIT
+
+## Original Author
+James Webb
