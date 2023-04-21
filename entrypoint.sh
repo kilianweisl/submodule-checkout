@@ -7,6 +7,7 @@ if [ "$challenge" = "$sig" ]; then
     mkdir /root/.ssh/
     chmod 700 /root/.ssh/
     ssh-keyscan github.com 2>/dev/null >> /root/.ssh/known_hosts
+    git config --global --add safe.directory /github/workspace
     if [ "$1" = "" ]; then
         echo "No SSH key detected, attempting public checkout"
         git submodule update --init --recursive
