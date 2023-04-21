@@ -6,7 +6,7 @@ This action checks out a private or public submodule hosted within GitHub.
 
 ````
 - uses: actions/checkout@v3
-- uses: kilianweisl/submodule-checkout@1.0.0
+- uses: kilianweisl/submodule-checkout@v1.0
 ````
 
 ## Private Repositories
@@ -14,7 +14,7 @@ This action checks out a private or public submodule hosted within GitHub.
 If you want to check out private repositories, provide an additional (private) SSH-Key:
 ````
 - uses: actions/checkout@v3
-- uses: kilianweisl/submodule-checkout@1.0.0
+- uses: kilianweisl/submodule-checkout@v1.0
   with:
     ssh-key: '${{ secrets.SSH_PRIVATE_KEY }}'
 ````
